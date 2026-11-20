@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="menuPageTitle">M&amp;S — القائمة الرقمية | Digital Menu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Cairo"', '"Tajawal"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            obsidian: '#0b0b0d',
+            charcoal: '#131317',
+            charcoalSoft: '#19191f',
+            crimsonDeep: '#5e0d14',
+            crimsonRich: '#8b151e',
+            crimsonBright: '#b91c28',
+            ivory: '#f5f3ef',
+            ash: '#a39e98',
+            lineDark: 'rgba(245, 243, 239, 0.11)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root,
+    :root[data-theme="dark"] {
+      --ground-obsidian: #0b0b0d;
+      --surface-charcoal: #131317;
+      --surface-soft: #19191f;
+      --text-ivory: #f5f3ef;
+      --text-ash: #a39e98;
+      --accent-crimson: #c92a37;
+      --border-hairline: rgba(245, 243, 239, 0.11);
+      --header-bg: rgba(11, 11, 13, 0.9);
+      --toast-bg: #18181d;
+      --page-bg-image:
+        radial-gradient(circle at 86% 0%, rgba(139, 21, 30, 0.18), transparent 44%),
+        radial-gradient(circle at 12% 18%, rgba(185, 28, 40, 0.08), transparent 36%),
+        linear-gradient(180deg, #0b0b0d 0%, #0e0e11 100%);
+      --card-surface: linear-gradient(180deg, #15151a 0%, #111115 100%);
+      --pill-bg: #18181e;
+      --pill-text: #d6d1ca;
+      --pill-hover-bg: #22222a;
+      --pill-hover-text: #f5f3ef;
+      --btn-crimson-grad: linear-gradient(135deg, #991620 0%, #730e16 55%, #4d080e 100%);
+      --btn-crimson-hover: linear-gradient(135deg, #b51d29 0%, #86121b 60%, #5c0b12 100%);
+      --btn-crimson-shadow: 0 6px 18px rgba(139, 21, 30, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+      --btn-crimson-hover-shadow: 0 8px 22px rgba(185, 28, 40, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    :root[data-theme="light"] {
+      --ground-obsidian: #f7f4ef;
+      --surface-charcoal: #ffffff;
+      --surface-soft: #f1ece4;
+      --text-ivory: #161414;
+      --text-ash: #5f5955;
+      --accent-crimson: #9e1621;
+      --border-hairline: rgba(22, 20, 20, 0.12);
+      --header-bg: rgba(247, 244, 239, 0.92);
+      --toast-bg: #18181d;
+      --page-bg-image:
+        radial-gradient(circle at 88% 0%, rgba(158, 22, 33, 0.08), transparent 45%),
+        radial-gradient(circle at 10% 15%, rgba(22, 20, 20, 0.04), transparent 38%),
+        linear-gradient(180deg, #f7f4ef 0%, #f3efe8 100%);
+      --card-surface: linear-gradient(180deg, #ffffff 0%, #fbf9f5 100%);
+      --pill-bg: #f1ece4;
+      --pill-text: #2c2827;
+      --pill-hover-bg: #e7e0d5;
+      --pill-hover-text: #161414;
+      --btn-crimson-grad: linear-gradient(135deg, #a81824 0%, #83111a 55%, #5f0b12 100%);
+      --btn-crimson-hover: linear-gradient(135deg, #be1e2b 0%, #96141f 60%, #700e16 100%);
+      --btn-crimson-shadow: 0 6px 16px rgba(158, 22, 33, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      --btn-crimson-hover-shadow: 0 8px 20px rgba(158, 22, 33, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+    }
+
+    body {
+      background-color: var(--ground-obsidian);
+      color: var(--text-ivory);
+      background-image: var(--page-bg-image);
+      min-height: 100vh;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .theme-header {
+      background-color: var(--header-bg);
+      border-color: var(--border-hairline);
+    }
+
+    .theme-surface-card {
+      background-color: var(--surface-soft);
+      border-color: var(--border-hairline);
+    }
+
+    .theme-hairline-border {
+      border-color: var(--border-hairline);
+    }
+
+    .theme-muted-text {
+      color: var(--text-ash);
+    }
+
+    .theme-accent-text {
+      color: var(--accent-crimson);
+    }
+
+    .editorial-surface {
+      background: var(--card-surface);
+      border: 1px solid var(--border-hairline);
+      transition: border-color 0.22s ease, background 0.25s ease, transform 0.2s ease;
+    }
+
+    .editorial-surface:hover {
+      border-color: rgba(185, 28, 40, 0.38);
+    }
+
+    .metallic-crimson-btn {
+      background: var(--btn-crimson-grad);
+      color: #f5f3ef;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: var(--btn-crimson-shadow);
+      transition: transform 0.16s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .metallic-crimson-btn:hover:not(:disabled) {
+      background: var(--btn-crimson-hover);
+      box-shadow: var(--btn-crimson-hover-shadow);
+      transform: translateY(-1px);
+    }
+
+    .theme-pill-btn {
+      background-color: var(--pill-bg);
+      color: var(--pill-text);
+      border: 1px solid var(--border-hairline);
+    }
+
+    .theme-pill-btn:hover {
+      background-color: var(--pill-hover-bg);
+      color: var(--pill-hover-text);
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="pb-24 selection:bg-crimsonRich selection:text-ivory">
+
+  <header class="sticky top-0 z-30 backdrop-blur-md border-b theme-header transition-colors duration-250">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3 min-w-0">
+        <div class="w-11 h-11 rounded-xl theme-surface-card border border-crimsonRich/45 flex items-center justify-center shrink-0">
+          <span id="brandLogoText" class="font-extrabold text-sm tracking-widest">M&amp;S</span>
+        </div>
+        <div class="min-w-0">
+          <div class="flex items-center gap-2">
+            <h1 id="brandTitleText" class="text-base sm:text-xl font-extrabold truncate">M&amp;S</h1>
+            <span id="syncStatusBadge" class="text-[11px] font-bold px-2 py-0.5 rounded-md border theme-hairline-border theme-accent-text shrink-0">
+              مباشر
+            </span>
+          </div>
+          <p id="brandTaglineText" class="text-xs theme-muted-text truncate">
+            شاورما وفروج • دمشق
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <button
+          id="menuLangBtn"
+          type="button"
+          onclick="toggleMenuLanguage()"
+          class="theme-pill-btn px-3 py-2 rounded-xl text-xs font-extrabold cursor-pointer transition"
+        >
+          EN
+        </button>
+
+        <button
+          id="menuThemeBtn"
+          type="button"
+          onclick="toggleMenuTheme()"
+          class="theme-pill-btn w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center cursor-pointer transition"
+        >
+          <span id="menuThemeIcon" class="text-sm sm:text-base leading-none" aria-hidden="true">☀</span>
+        </button>
+
+        <button
+          id="openCartBtn"
+          type="button"
+          onclick="toggleCartDrawer(true)"
+          class="metallic-crimson-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 cursor-pointer"
+        >
+          <span id="cartBtnLabel">السلة</span>
+          <span id="cartCountBadge" class="bg-black/35 px-2 py-0.5 rounded-md text-xs font-extrabold tabular-nums">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-7 space-y-8">
+
+    <section id="featuredSpotlightSection" class="editorial-surface rounded-2xl p-5 sm:p-7 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+      <div class="lg:col-span-7 space-y-3">
+        <span id="spotlightEyebrow" class="text-xs font-bold theme-accent-text block">
+          طبق اليوم المميز
+        </span>
+        <h2 id="spotlightTitle" class="text-2xl sm:text-3xl font-extrabold leading-tight">
+          صحن شاورما عربي دبل
+        </h2>
+        <p id="spotlightDesc" class="text-xs sm:text-sm theme-muted-text leading-relaxed max-w-2xl">
+          شرائح شاورما دجاج متبلة ومحمّرة على السيخ، مقدمة مع ثومية كريمية ومخلل وبطاطا مقرمشة.
+        </p>
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <span id="spotlightPrice" class="text-lg sm:text-xl font-extrabold tabular-nums theme-accent-text">
+            68,000 ل.س
+          </span>
+          <button
+            id="spotlightAddBtn"
+            type="button"
+            class="metallic-crimson-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold cursor-pointer"
+          >
+            أضف إلى السلة
+          </button>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5">
+        <div class="aspect-[16/10] rounded-xl overflow-hidden theme-surface-card border theme-hairline-border">
+          <img
+            id="spotlightImage"
+            src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=900&q=80"
+            alt="M&S Featured Dish"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+        <div id="categoryTabsBar" class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+        </div>
+
+        <div class="sm:w-72 shrink-0">
+          <input
+            id="menuSearchInput"
+            type="search"
+            oninput="renderMenuItems()"
+            placeholder="ابحث عن صنف في القائمة..."
+            class="w-full rounded-xl theme-surface-card border focus:border-[#b91c28] focus:outline-none px-3.5 py-2 text-xs sm:text-sm"
+          />
+        </div>
+      </div>
+
+      <div id="menuItemsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      </div>
+    </section>
+
+  </main>
+
+  <div id="cartBackdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 z-40 bg-black/65 backdrop-blur-xs hidden"></div>
+  <aside
+    id="cartDrawer"
+    class="fixed top-0 bottom-0 left-0 z-50 w-full max-w-md editorial-surface border-r p-5 sm:p-6 flex flex-col justify-between transition-transform duration-200 -translate-x-full"
+  >
+    <div class="space-y-4 overflow-y-auto pr-1">
+      <div class="flex items-center justify-between border-b theme-hairline-border pb-3.5">
+        <h3 id="cartDrawerTitle" class="text-lg font-extrabold">سلة الطلب</h3>
+        <button
+          type="button"
+          onclick="toggleCartDrawer(false)"
+          class="theme-pill-btn px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer"
+        >
+          إغلاق
+        </button>
+      </div>
+
+      <div id="cartItemsContainer" class="space-y-3">
+      </div>
+    </div>
+
+    <div class="space-y-4 pt-4 border-t theme-hairline-border">
+      <div class="flex items-center justify-between">
+        <span id="cartTotalLabel" class="text-sm font-bold theme-muted-text">الإجمالي</span>
+        <span id="cartTotalAmount" class="text-lg font-extrabold tabular-nums theme-accent-text">0 ل.س</span>
+      </div>
+
+      <button
+        id="sendWhatsappOrderBtn"
+        type="button"
+        onclick="sendOrderViaWhatsApp()"
+        class="w-full metallic-crimson-btn py-3 rounded-xl text-sm font-extrabold cursor-pointer"
+      >
+        إرسال الطلب عبر واتساب
+      </button>
+    </div>
+  </aside>
+
+  <div
+    id="menuToast"
+    class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] pointer-events-none opacity-0 translate-y-2 transition-all duration-200"
+  >
+    <div style="background-color: var(--toast-bg); border-color: rgba(185, 28, 40, 0.55);" class="border px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold shadow-2xl flex items-center gap-2 text-[#f5f3ef]">
+      <span class="w-1.5 h-1.5 rounded-full bg-[#dc2626]"></span>
+      <span id="menuToastText">تمت الإضافة إلى السلة</span>
+    </div>
+  </div>
+
+  <script>
+    const MENU_LANG_KEY = 'ms_menu_lang_v1';
+    const MENU_THEME_KEY = 'ms_menu_theme_v1';
+
+    const MENU_I18N = {
+      ar: {
+        pageTitle: 'M&S — القائمة الرقمية | Digital Menu',
+        syncLive: 'مباشر',
+        syncLocal: 'محلي',
+        cartBtn: 'السلة',
+        spotlightEyebrow: 'طبق اليوم المميز',
+        addToCart: 'أضف إلى السلة',
+        allCats: 'الكل',
+        searchPlaceholder: 'ابحث عن صنف في القائمة...',
+        available: 'متوفر',
+        unavailable: 'غير متوفر حالياً',
+        emptyItems: 'لا توجد أصناف مطابقة لبحثك أو للقسم المحدد.',
+        cartTitle: 'سلة الطلب',
+        cartEmpty: 'السلة فارغة حالياً. أضف أصنافاً من القائمة.',
+        totalLabel: 'الإجمالي',
+        sendWhatsapp: 'إرسال الطلب عبر واتساب',
+        addedToast: 'تمت الإضافة إلى السلة',
+        waGreeting: 'طلب جديد من قائمة M&S:',
+        waTotal: 'الإجمالي'
+      },
+      en: {
+        pageTitle: 'M&S — Digital Menu',
+        syncLive: 'Live',
+        syncLocal: 'Local',
+        cartBtn: 'Cart',
+        spotlightEyebrow: "Today's Spotlight",
+        addToCart: 'Add to Cart',
+        allCats: 'All',
+        searchPlaceholder: 'Search dishes in the menu...',
+        available: 'Available',
+        unavailable: 'Unavailable',
+        emptyItems: 'No dishes match your search or selected category.',
+        cartTitle: 'Your Order Cart',
+        cartEmpty: 'Your cart is empty. Add items from the menu.',
+        totalLabel: 'Total',
+        sendWhatsapp: 'Send Order via WhatsApp',
+        addedToast: 'Added to cart',
+        waGreeting: 'New order from M&S Menu:',
+        waTotal: 'Total'
+      }
+    };
+
+    let currentLang = localStorage.getItem(MENU_LANG_KEY) === 'en' ? 'en' : 'ar';
+    let currentTheme = localStorage.getItem(MENU_THEME_KEY) === 'light' ? 'light' : 'dark';
+    let activeCategory = 'all';
+    let cart = [];
+    let isLiveConnected = false;
+
+    let STORE_SETTINGS = {
+      brandNameAr: 'M&S',
+      brandNameEn: 'M&S',
+      taglineAr: 'شاورما وفروج • دمشق',
+      taglineEn: 'Shawarma & Chicken • Damascus',
+      currencyAr: 'ل.س',
+      currencyEn: 'SYP',
+      whatsappNumber: '963940242745'
+    };
+
+    let CATEGORIES = [
+      { id: 'shawarma', slug: 'shawarma', nameAr: 'شاورما', nameEn: 'Shawarma', order: 1 },
+      { id: 'chicken-broasted', slug: 'chicken-broasted', nameAr: 'فروج وبروستد', nameEn: 'Chicken & Broasted', order: 2 },
+      { id: 'family-meals', slug: 'family-meals', nameAr: 'وجبات عائلية', nameEn: 'Family Meals', order: 3 },
+      { id: 'sandwiches-rockets', slug: 'sandwiches-rockets', nameAr: 'سندويش وصواريخ', nameEn: 'Sandwiches & Rockets', order: 4 },
+      { id: 'sides-sauces', slug: 'sides-sauces', nameAr: 'مقبلات وصلصات', nameEn: 'Sides & Sauces', order: 5 }
+    ];
+
+    let PRODUCTS = [
+      {
+        id: 'ms-shawarma-arabi-double',
+        nameAr: 'صحن شاورما عربي دبل',
+        nameEn: 'Double Arabic Shawarma Platter',
+        category: 'shawarma',
+        price: 68000,
+        badgeAr: 'اختيار اليوم',
+        badgeEn: "Today's Pick",
+        available: true,
+        featured: true,
+        image: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=900&q=80',
+        descAr: 'شرائح شاورما دجاج متبلة ومحمّرة على السيخ، مقدمة مع ثومية كريمية ومخلل وبطاطا مقرمشة.',
+        descEn: 'Spiced rotisserie chicken shawarma sliced to order, served with garlic toum, pickles, and fries.'
+      },
+      {
+        id: 'ms-broasted-8pcs',
+        nameAr: 'بروستد 8 قطع مقرمش',
+        nameEn: '8-Piece Crispy Broasted',
+        category: 'chicken-broasted',
+        price: 115000,
+        badgeAr: 'مقرمش',
+        badgeEn: 'Crispy',
+        available: true,
+        featured: false,
+        image: 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=900&q=80',
+        descAr: '8 قطع فروج مقلية بضغط البخار بتتبيلة M&S الخاصة مع بطاطا وثوم وكاتشب وخبز.',
+        descEn: '8 pressure-fried chicken pieces with M&S signature seasoning, fries, garlic sauce, ketchup, and bread.'
+      }
+    ];
+
+    function tr(key) {
+      return (MENU_I18N[currentLang] && MENU_I18N[currentLang][key]) || MENU_I18N.ar[key] || key;
+    }
+
+    function formatPrice(amount) {
+      const num = Number(amount) || 0;
+      const currency = currentLang === 'en' ? (STORE_SETTINGS.currencyEn || 'SYP') : (STORE_SETTINGS.currencyAr || 'ل.س');
+      return `${num.toLocaleString('en-US')} ${currency}`;
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('menuToast');
+      const textEl = document.getElementById('menuToastText');
+      if (!toast || !textEl) return;
+      textEl.textContent = msg;
+      toast.classList.remove('opacity-0', 'translate-y-2');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      clearTimeout(window._msMenuToastTimer);
+      window._msMenuToastTimer = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'translate-y-2');
+      }, 2200);
+    }
+
+    function applyMenuTheme(theme) {
+      currentTheme = theme === 'light' ? 'light' : 'dark';
+      localStorage.setItem(MENU_THEME_KEY, currentTheme);
+      document.documentElement.setAttribute('data-theme', currentTheme);
+      document.documentElement.classList.toggle('dark', currentTheme === 'dark');
+      const iconEl = document.getElementById('menuThemeIcon');
+      if (iconEl) iconEl.textContent = currentTheme === 'dark' ? '☀' : '☾';
+    }
+
+    function toggleMenuTheme() {
+      applyMenuTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    }
+
+    function applyMenuLanguage() {
+      document.documentElement.lang = currentLang;
+      document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+      localStorage.setItem(MENU_LANG_KEY, currentLang);
+
+      const langBtn = document.getElementById('menuLangBtn');
+      if (langBtn) langBtn.textContent = currentLang === 'ar' ? 'EN' : 'AR';
+
+      const brandName = currentLang === 'en'
+        ? (STORE_SETTINGS.brandNameEn || STORE_SETTINGS.brandNameAr || 'M&S')
+        : (STORE_SETTINGS.brandNameAr || STORE_SETTINGS.brandNameEn || 'M&S');
+      const tagline = currentLang === 'en'
+        ? (STORE_SETTINGS.taglineEn || STORE_SETTINGS.taglineAr || '')
+        : (STORE_SETTINGS.taglineAr || STORE_SETTINGS.taglineEn || '');
+
+      document.getElementById('menuPageTitle').textContent = `${brandName} — ${tr('pageTitle')}`;
+      document.getElementById('brandLogoText').textContent = brandName;
+      document.getElementById('brandTitleText').textContent = brandName;
+      document.getElementById('brandTaglineText').textContent = tagline;
+      document.getElementById('syncStatusBadge').textContent = isLiveConnected ? tr('syncLive') : tr('syncLocal');
+      document.getElementById('cartBtnLabel').textContent = tr('cartBtn');
+      document.getElementById('spotlightEyebrow').textContent = tr('spotlightEyebrow');
+      document.getElementById('spotlightAddBtn').textContent = tr('addToCart');
+      document.getElementById('menuSearchInput').placeholder = tr('searchPlaceholder');
+      document.getElementById('cartDrawerTitle').textContent = tr('cartTitle');
+      document.getElementById('cartTotalLabel').textContent = tr('totalLabel');
+      document.getElementById('sendWhatsappOrderBtn').textContent = tr('sendWhatsapp');
+
+      renderSpotlight();
+      renderCategoryTabs();
+      renderMenuItems();
+      renderCartDrawer();
+    }
+
+    function toggleMenuLanguage() {
+      currentLang = currentLang === 'ar' ? 'en' : 'ar';
+      applyMenuLanguage();
+    }
+
+    function renderSpotlight() {
+      const spotlightSection = document.getElementById('featuredSpotlightSection');
+      if (!spotlightSection || PRODUCTS.length === 0) return;
+
+      const featuredDish = PRODUCTS.find((p) => p.featured && p.available !== false)
+        || PRODUCTS.find((p) => p.available !== false)
+        || PRODUCTS[0];
+
+      const title = currentLang === 'en' ? (featuredDish.nameEn || featuredDish.nameAr) : (featuredDish.nameAr || featuredDish.nameEn);
+      const desc = currentLang === 'en' ? (featuredDish.descEn || featuredDish.descAr) : (featuredDish.descAr || featuredDish.descEn);
+
+      document.getElementById('spotlightTitle').textContent = title;
+      document.getElementById('spotlightDesc').textContent = desc || '';
+      document.getElementById('spotlightPrice').textContent = formatPrice(featuredDish.price);
+
+      const imgEl = document.getElementById('spotlightImage');
+      if (imgEl && featuredDish.image) {
+        imgEl.src = featuredDish.image;
+        imgEl.alt = title;
+      }
+
+      const addBtn = document.getElementById('spotlightAddBtn');
+      addBtn.disabled = featuredDish.available === false;
+      addBtn.onclick = () => addToCart(featuredDish.id);
+    }
+
+    function renderCategoryTabs() {
+      const bar = document.getElementById('categoryTabsBar');
+      if (!bar) return;
+
+      const allBtn = `
+        <button
+          type="button"
+          onclick="selectCategory('all')"
+          class="${activeCategory === 'all' ? 'metallic-crimson-btn' : 'theme-pill-btn'} px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap cursor-pointer"
+        >
+          ${tr('allCats')}
+        </button>
+      `;
+
+      const catBtns = CATEGORIES.map((cat) => {
+        const label = currentLang === 'en' ? (cat.nameEn || cat.nameAr) : (cat.nameAr || cat.nameEn);
+        const isActive = activeCategory === cat.id;
+        return `
+          <button
+            type="button"
+            onclick="selectCategory('${cat.id}')"
+            class="${isActive ? 'metallic-crimson-btn' : 'theme-pill-btn'} px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap cursor-pointer"
+          >
+            ${label}
+          </button>
+        `;
+      }).join('');
+
+      bar.innerHTML = allBtn + catBtns;
+    }
+
+    function selectCategory(catId) {
+      activeCategory = catId;
+      renderCategoryTabs();
+      renderMenuItems();
+    }
+
+    function renderMenuItems() {
+      const grid = document.getElementById('menuItemsGrid');
+      if (!grid) return;
+
+      const q = (document.getElementById('menuSearchInput')?.value || '').trim().toLowerCase();
+      const filtered = PRODUCTS.filter((item) => {
+        const matchesCat = activeCategory === 'all' || item.category === activeCategory;
+        const matchesQuery = !q
+          || (item.nameAr || '').toLowerCase().includes(q)
+          || (item.nameEn || '').toLowerCase().includes(q)
+          || (item.descAr || '').toLowerCase().includes(q)
+          || (item.descEn || '').toLowerCase().includes(q);
+        return matchesCat && matchesQuery;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="col-span-full editorial-surface rounded-2xl p-8 text-center text-sm theme-muted-text">${tr('emptyItems')}</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map((item) => {
+        const title = currentLang === 'en' ? (item.nameEn || item.nameAr) : (item.nameAr || item.nameEn);
+        const desc = currentLang === 'en' ? (item.descEn || item.descAr) : (item.descAr || item.descEn);
+        const badge = currentLang === 'en' ? (item.badgeEn || item.badgeAr) : (item.badgeAr || item.badgeEn);
+        const isAvail = item.available !== false;
+
+        return `
+          <article class="editorial-surface rounded-2xl overflow-hidden flex flex-col justify-between ${!isAvail ? 'opacity-65' : ''}">
+            <div>
+              ${item.image ? `
+                <div class="aspect-[16/10] w-full overflow-hidden theme-surface-card border-b theme-hairline-border">
+                  <img src="${item.image}" alt="${title}" class="w-full h-full object-cover" loading="lazy" />
+                </div>
+              ` : ''}
+              <div class="p-4 sm:p-5 space-y-2.5">
+                <div class="flex items-start justify-between gap-2">
+                  <h3 class="text-base sm:text-lg font-extrabold leading-snug">${title}</h3>
+                  <span class="text-sm sm:text-base font-extrabold tabular-nums theme-accent-text shrink-0">${formatPrice(item.price)}</span>
+                </div>
+                <p class="text-xs sm:text-sm theme-muted-text leading-relaxed line-clamp-2">${desc || ''}</p>
+                <div class="flex items-center gap-2 pt-1">
+                  ${badge ? `<span class="text-[11px] font-bold px-2.5 py-0.5 rounded-md border theme-hairline-border theme-accent-text">${badge}</span>` : ''}
+                  <span class="text-[11px] font-bold ${isAvail ? 'theme-muted-text' : 'text-[#dc2626]'}">
+                    ${isAvail ? tr('available') : tr('unavailable')}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-4 sm:px-5 pb-4 sm:pb-5 pt-1">
+              <button
+                type="button"
+                ${isAvail ? `onclick="addToCart('${item.id}')"` : 'disabled'}
+                class="w-full ${isAvail ? 'metallic-crimson-btn cursor-pointer' : 'theme-pill-btn opacity-50 cursor-not-allowed'} py-2.5 rounded-xl text-xs sm:text-sm font-bold"
+              >
+                ${isAvail ? tr('addToCart') : tr('unavailable')}
+              </button>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function addToCart(productId) {
+      const product = PRODUCTS.find((p) => p.id === productId);
+      if (!product || product.available === false) return;
+
+      const existing = cart.find((c) => c.id === productId);
+      if (existing) existing.qty += 1;
+      else cart.push({ id: productId, qty: 1 });
+
+      updateCartBadge();
+      renderCartDrawer();
+      showToast(tr('addedToast'));
+    }
+
+    function changeCartQty(productId, delta) {
+      const idx = cart.findIndex((c) => c.id === productId);
+      if (idx === -1) return;
+      cart[idx].qty += delta;
+      if (cart[idx].qty <= 0) cart.splice(idx, 1);
+      updateCartBadge();
+      renderCartDrawer();
+    }
+
+    function updateCartBadge() {
+      const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+      const badge = document.getElementById('cartCountBadge');
+      if (badge) badge.textContent = String(totalQty);
+    }
+
+    function toggleCartDrawer(open) {
+      const drawer = document.getElementById('cartDrawer');
+      const backdrop = document.getElementById('cartBackdrop');
+      if (!drawer || !backdrop) return;
+      if (open) {
+        backdrop.classList.remove('hidden');
+        drawer.classList.remove('-translate-x-full');
+      } else {
+        backdrop.classList.add('hidden');
+        drawer.classList.add('-translate-x-full');
+      }
+    }
+
+    function renderCartDrawer() {
+      const container = document.getElementById('cartItemsContainer');
+      const totalEl = document.getElementById('cartTotalAmount');
+      if (!container || !totalEl) return;
+
+      if (cart.length === 0) {
+        container.innerHTML = `<p class="text-sm theme-muted-text py-8 text-center">${tr('cartEmpty')}</p>`;
+        totalEl.textContent = formatPrice(0);
+        return;
+      }
+
+      let grandTotal = 0;
+      container.innerHTML = cart.map((entry) => {
+        const prod = PRODUCTS.find((p) => p.id === entry.id);
+        if (!prod) return '';
+        const lineTotal = (Number(prod.price) || 0) * entry.qty;
+        grandTotal += lineTotal;
+        const title = currentLang === 'en' ? (prod.nameEn || prod.nameAr) : (prod.nameAr || prod.nameEn);
+
+        return `
+          <div class="theme-surface-card border rounded-xl p-3 flex items-center justify-between gap-3">
+            <div class="min-w-0">
+              <p class="text-xs sm:text-sm font-extrabold truncate">${title}</p>
+              <span class="text-xs theme-muted-text tabular-nums">${formatPrice(lineTotal)}</span>
+            </div>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <button type="button" onclick="changeCartQty('${entry.id}', -1)" class="theme-pill-btn w-7 h-7 rounded-lg text-xs font-extrabold cursor-pointer">-</button>
+              <span class="text-xs font-extrabold tabular-nums px-1">${entry.qty}</span>
+              <button type="button" onclick="changeCartQty('${entry.id}', 1)" class="theme-pill-btn w-7 h-7 rounded-lg text-xs font-extrabold cursor-pointer">+</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      totalEl.textContent = formatPrice(grandTotal);
+    }
+
+    function sendOrderViaWhatsApp() {
+      if (cart.length === 0) return;
+      const lines = [tr('waGreeting')];
+      let grandTotal = 0;
+
+      cart.forEach((entry) => {
+        const prod = PRODUCTS.find((p) => p.id === entry.id);
+        if (!prod) return;
+        const lineTotal = (Number(prod.price) || 0) * entry.qty;
+        grandTotal += lineTotal;
+        const title = currentLang === 'en' ? (prod.nameEn || prod.nameAr) : (prod.nameAr || prod.nameEn);
+        lines.push(`• ${title} × ${entry.qty} (${formatPrice(lineTotal)})`);
+      });
+
+      lines.push(`${tr('waTotal')}: ${formatPrice(grandTotal)}`);
+      const phone = (STORE_SETTINGS.whatsappNumber || '963940242745').replace(/[^0-9]/g, '');
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(lines.join('\n'))}`;
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+
+    window.addEventListener('ms-menu:status', (e) => {
+      isLiveConnected = Boolean(e.detail?.connected);
+      const badge = document.getElementById('syncStatusBadge');
+      if (badge) badge.textContent = isLiveConnected ? tr('syncLive') : tr('syncLocal');
+    });
+
+    window.addEventListener('ms-menu:items', (e) => {
+      if (Array.isArray(e.detail?.items) && e.detail.items.length > 0) {
+        PRODUCTS = e.detail.items;
+        renderSpotlight();
+        renderMenuItems();
+        renderCartDrawer();
+      }
+    });
+
+    window.addEventListener('ms-menu:categories', (e) => {
+      if (Array.isArray(e.detail?.categories) && e.detail.categories.length > 0) {
+        CATEGORIES = e.detail.categories;
+        renderCategoryTabs();
+      }
+    });
+
+    window.addEventListener('ms-menu:settings', (e) => {
+      if (e.detail?.settings) {
+        STORE_SETTINGS = { ...STORE_SETTINGS, ...e.detail.settings };
+        applyMenuLanguage();
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      applyMenuTheme(currentTheme);
+      applyMenuLanguage();
+    });
+  </script>
+
+  <script type="module">
+    import { initializeApp, getApps, getApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
+    import {
+      getFirestore,
+      collection,
+      doc,
+      onSnapshot
+    } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
+
+    const FB_CONFIG_KEY = 'ms_firebase_config_v1';
+
+    const DEFAULT_FIREBASE_CONFIG = {
+      apiKey: 'AIzaSyBW7J44fwJvC5AyiZOGOj8P97FIkTzMWYw',
+      authDomain: 'm-and-s-a17dd.firebaseapp.com',
+      projectId: 'm-and-s-a17dd',
+      storageBucket: 'm-and-s-a17dd.firebasestorage.app',
+      messagingSenderId: '660263959688',
+      appId: '1:660263959688:web:a54532b7511a771fd1333d',
+      measurementId: 'G-MDFR7JK8KZ'
+    };
+
+    function getSharedFirebaseConfig() {
+      try {
+        const raw = window.localStorage.getItem(FB_CONFIG_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && parsed.apiKey && parsed.projectId) {
+            return { ...DEFAULT_FIREBASE_CONFIG, ...parsed };
+          }
+        }
+      } catch (e) {
+        // تجاهل
+      }
+      return DEFAULT_FIREBASE_CONFIG;
+    }
+
+    try {
+      const cfg = getSharedFirebaseConfig();
+      const appName = 'ms-menu-app';
+      const app = getApps().some((a) => a.name === appName)
+        ? getApp(appName)
+        : initializeApp(cfg, appName);
+      const db = getFirestore(app);
+
+      window.dispatchEvent(new CustomEvent('ms-menu:status', { detail: { connected: true } }));
+
+      onSnapshot(collection(db, 'ms_menu'), (snap) => {
+        const items = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+        window.dispatchEvent(new CustomEvent('ms-menu:items', { detail: { items } }));
+      });
+
+      onSnapshot(collection(db, 'ms_categories'), (snap) => {
+        const categories = snap.docs
+          .map((d) => ({ id: d.id, ...d.data() }))
+          .sort((a, b) => (a.order || 99) - (b.order || 99));
+        window.dispatchEvent(new CustomEvent('ms-menu:categories', { detail: { categories } }));
+      });
+
+      onSnapshot(doc(db, 'ms_settings', 'brand'), (snap) => {
+        if (snap.exists()) {
+          window.dispatchEvent(new CustomEvent('ms-menu:settings', { detail: { settings: snap.data() } }));
+        }
+      });
+    } catch (err) {
+      window.dispatchEvent(new CustomEvent('ms-menu:status', { detail: { connected: false } }));
+    }
+  </script>
+</body>
+</html>
+```
